@@ -44,7 +44,6 @@ router.post('/createuser', [
             email: req.body.email,
             phone: req.body.phone
         })
-        // console.log(user);
 
         const data = {
             user: {
@@ -107,7 +106,7 @@ router.post('/getuser', fetchuser, async (req, res) => {
     try { 
         let userId = req.user.id;
         const user = await User.findById(userId).select("-password");
-        res.send(user);
+        res.status(200).send(user);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
@@ -153,7 +152,6 @@ router.get('/search/:itemcode', async (req, res) => {
         let itemc = req.params.itemcode.toLowerCase();
         // console.log(itemc);
         const items = await Item.find({$or:[{"category":{$regex:itemc, $options : "i"}},{"title":{$regex:itemc, $options : "i"}}]}) 
-        // console.log(items);
         res.json(items);
     } catch (error) {
         console.error(error.message);

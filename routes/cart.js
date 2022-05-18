@@ -40,7 +40,7 @@ router.post('/additem', fetchuser, async (req, res) => {
         res.json(savedItem);
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send({msg:"Internal Server Error",error});
     }
 });
 
@@ -49,9 +49,7 @@ router.post('/additem', fetchuser, async (req, res) => {
 router.delete('/deleteitem/:id', fetchuser, async (req, res) => {
     try {
         // Find the item to delete
-        // console.log(req.params.id);
         let cartItem = await Cart.findById(req.params.id);
-        // console.log(cartItem);
         if (!cartItem) { return res.status(404).send("NOT FOUND") }
 
         // Allow to delete only if user owns this cart item
