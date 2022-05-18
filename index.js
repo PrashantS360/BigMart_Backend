@@ -10,6 +10,10 @@ app.use(cors())
 app.use(express.json())
 
 // Available Routes
+app.get('/',(req,res)=>{
+  res.send({message:"App started successfully"})
+})
+
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/auth', require('./routes/cart'))
 app.use('/api/auth', require('./routes/item'))
