@@ -21,7 +21,7 @@ router.get('/getorders', fetchuser, async (req, res) => {
 // ROUTE 2: Add new Item using : POST "api/auth/order". Login required
 router.post('/order', fetchuser, async (req, res) => {
     try {
-        const { itemCode, title, imgLink, qty,discount, price, delivered } = req.body;
+        const { itemCode, title, imgLink, qty, discount, price, delivered } = req.body;
         // If there are errors return bad request and the errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
